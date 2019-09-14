@@ -1,6 +1,5 @@
-import {Route} from 'express';
-import router from './acounts';
+import {Router} from 'express';
 
-const router = Route();
+const router = Router();
 
 export default router;

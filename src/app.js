@@ -9,7 +9,8 @@ import accountsRoutes from './routes/acounts';
 import categoriesRoutes from './routes/categories';
 
 //routes
-app.use(accountsRoutes);
+app.use('/api/projects',accountsRoutes);
+app.use('/api/categories',categoriesRoutes);
 
 
 //midellwares
