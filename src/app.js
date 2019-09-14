@@ -6,7 +6,7 @@ const app = express();
 
 //importing routes
 import accountsRoutes from './routes/acounts';
-
+import categoriesRoutes from './routes/categories';
 
 //routes
 app.use(accountsRoutes);
