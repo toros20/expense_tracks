@@ -1,4 +1,4 @@
-import express, { json} from 'express';
+import express, { json } from 'express';
 import morgan from 'morgan';
 
 //initializacion
@@ -9,7 +9,7 @@ import accountsRoutes from './routes/acounts';
 import categoriesRoutes from './routes/categories';
 
 //routes
-app.use('/api/projects',accountsRoutes);
+app.use('/api/accounts',accountsRoutes);
 app.use('/api/categories',categoriesRoutes);
 
 

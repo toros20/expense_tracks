@@ -12,7 +12,7 @@ const Account = sequelize.define('accounts',{
     name:{
         type: Sequelize.TEXT,
     },
-    detail:{
+    details:{
         type:Sequelize.TEXT
     },
     balance:{
