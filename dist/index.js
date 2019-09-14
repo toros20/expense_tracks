@@ -24,7 +24,7 @@ function _main() {
             return _app["default"].listen(3000);
 
           case 2:
-            console.log('3000');
+            console.log('SERVER ON');
 
           case 3:
           case "end":

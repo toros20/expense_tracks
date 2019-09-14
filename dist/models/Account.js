@@ -21,7 +21,7 @@ var Account = _database.sequelize.define('accounts', {
   name: {
     type: _sequelize["default"].TEXT
   },
-  detail: {
+  details: {
     type: _sequelize["default"].TEXT
   },
   balance: {

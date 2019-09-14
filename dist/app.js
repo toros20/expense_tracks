@@ -23,7 +23,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var app = (0, _express["default"])(); //importing routes
 
 //routes
-app.use('/api/projects', _acounts["default"]);
+app.use('/api/accounts', _acounts["default"]);
 app.use('/api/categories', _categories["default"]); //midellwares
 
 app.use((0, _morgan["default"])('dev'));

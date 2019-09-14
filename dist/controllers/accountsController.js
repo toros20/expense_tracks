@@ -6,6 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.createAccount = createAccount;
 
 function createAccount(req, res) {
-  console.log(rew.body);
+  console.log(req.body);
   res.send('datos recibidos');
 }
