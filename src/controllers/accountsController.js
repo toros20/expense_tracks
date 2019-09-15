@@ -1,5 +1,6 @@
 import Account from '../models/Account';
 
+//function to crate a new account (/api/accounst/ => POST)
 export async function createAccount(req, res) {
 
     const { name, details, balance, type, user_id } = req.body;
@@ -12,7 +13,7 @@ export async function createAccount(req, res) {
             user_id,
         },{
             fields:['name','details','balance','type','user_id']
-        }
+            }
         
         );
 
@@ -32,4 +33,12 @@ export async function createAccount(req, res) {
 
     /*console.log(req.body);
     res.send('datos recibidos');*/
+}
+
+//function to show al the accounts (/api/accounst/ => GET)
+export async function getAccounts(req, res){
+    const accounts = await Account.findAll();
+    res.json({
+        data:accounts
+    });
 }
