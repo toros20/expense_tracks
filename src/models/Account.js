@@ -7,7 +7,8 @@ import { sequelize } from '../database/database';
 const Account = sequelize.define('accounts',{
     id:{
         type: Sequelize.INTEGER,
-        primaryKey:true
+        primaryKey:true,
+        autoIncrement:true
     },
     name:{
         type: Sequelize.TEXT,
@@ -23,6 +24,16 @@ const Account = sequelize.define('accounts',{
     },
     user_id:{
         type:Sequelize.INTEGER
+    },
+    created_at:{
+        type:Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
+        
+    },
+    updated_at:{
+        type:Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
+        
     }
 
 },{timestamps:true });
