@@ -10,7 +10,7 @@
     
   },
   "keywords": ["Expense and Income Trancks"],
-  "author": "",
+  "author": "MARVIN RICARDO TORO",
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
