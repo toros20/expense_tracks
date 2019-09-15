@@ -9,7 +9,7 @@
     "start": "nodemon src/index.js --exec babel-node"
     
   },
-  "keywords": [],
+  "keywords": ["Expense and Income Trancks"],
   "author": "",
   "license": "ISC",
   "dependencies": {
