@@ -35,10 +35,23 @@ export async function createAccount(req, res) {
     res.send('datos recibidos');*/
 }
 
-//function to show al the accounts (/api/accounst/ => GET)
+//function to get all the accounts (/api/accounts/ => GET)
 export async function getAccounts(req, res){
     const accounts = await Account.findAll();
     res.json({
         data:accounts
+    });
+}
+
+//function to show one account by id  (/api/accounts/:id =>GET)
+export async function showAccount(req, res){
+    const { id } = req.params;
+    const account = await Account.findOne({
+        where:{
+            id
+        }
+    });
+    res.json({
+        data:account
     });
 }
