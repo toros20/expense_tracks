@@ -1,8 +1,8 @@
 import {Router} from 'express';
 const router = Router();
 
-import { start } from '../controllers/startController';
+import { startRoutes } from '../controllers/startController';
 
-router.get('/',start);
+router.get('/',startRoutes);
 
 export default router;
