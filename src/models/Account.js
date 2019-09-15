@@ -22,9 +22,9 @@ const Account = sequelize.define('accounts',{
         type:Sequelize.TEXT
     },
     user_id:{
-        type:sequelize.INTEGER
+        type:Sequelize.INTEGER
     }
 
-},{timestamps:false });
+},{timestamps:true });
 
 export default Account;
