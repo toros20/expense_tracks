@@ -55,3 +55,18 @@ export async function showAccount(req, res){
         data:account
     });
 }
+
+//function to delete one account by id (/api/accounts/:id => DELETE)
+export async function deleteAccount(req , res){
+    const { id } = req.params;
+    //return the number od deleted rows
+    const deleteRowCount = await Account.destroy({
+        where:{
+            id
+        }
+    });
+    res.json({
+        message: 'Account Delete Successfully',
+        count:deleteRowCount
+    });
+}
