@@ -1,12 +1,13 @@
 {
   "name": "expense_tracks",
   "version": "1.0.0",
-  "description": "",
+  "description": "Expense and Income Trancks",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js --exec babel-node",
     "build": "babel src --out-dir dist",
-    "start": "node dist/index.js"
+    "start": "nodemon src/index.js --exec babel-node"
+    
   },
   "keywords": [],
   "author": "",
@@ -25,5 +26,8 @@
     "@babel/node": "^7.6.1",
     "@babel/preset-env": "^7.6.0",
     "nodemon": "^1.19.2"
+  },
+  "engines": {
+    "node": "12.9.1"
   }
 }
