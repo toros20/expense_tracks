@@ -70,3 +70,32 @@ export async function deleteAccount(req , res){
         count:deleteRowCount
     });
 }
+
+export async function updateAccount(req,res){
+    const { id } = req.params;
+    const {name,details,balance,type,user_id} = req.body;
+
+    const accounts = await Account.findAll({
+        attributes:['name','details','balance','type','user_id'],
+        where:{
+            id
+        }
+    });
+
+    if(accounts.length > 0){
+        accounts.forEach(async account => {
+            await account.update({
+                name,
+                details,
+                balance,
+                type,
+                user_id
+            });
+        })
+    }
+
+    return res.json({
+        message: 'Account Updated Successfully',
+        data:accounts
+    });
+}
