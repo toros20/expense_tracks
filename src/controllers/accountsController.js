@@ -1,5 +1,5 @@
 import Account from '../models/Account';
-
+//Create CRUD to Accounts
 //function to crate a new account (/api/accounst/ => POST)
 export async function createAccount(req, res) {
 
