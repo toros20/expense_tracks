@@ -112,10 +112,10 @@ export async function updateAccount(req,res){
         }
         );
 
-        return res.json({
-            message: 'Account Updated Successfully',
-            data:result
-        });
+        if(result){
+             res.redirect('/api/accounts/list');
+        }
+       
         
     }catch(erro){
         console.log(erro);
@@ -124,4 +124,20 @@ export async function updateAccount(req,res){
             data:{}
         });
     }
+}
+
+export async function editAccount(req,res){
+    const { id } = req.params;
+    try {
+         const account = await Account.findOne({
+            where:{
+                id
+            }
+        });
+        //console.log(account.balance);
+        res.render('accounts/edit',{account});
+    } catch (error) {
+        console.log(error);
+    }
+   
 }

@@ -1,7 +1,7 @@
 import {Router} from 'express';
 const router = Router();
 
-import { createAccount,getAccounts,showAccount,deleteAccount,updateAccount,addAccount,listAccount } 
+import { createAccount,getAccounts,showAccount,deleteAccount,updateAccount,addAccount,listAccount,editAccount } 
 from '../controllers/accountsController';
 
 //list all the account /api/account/list
@@ -16,6 +16,8 @@ router.get('/',getAccounts);
 router.get('/:id',showAccount);
 //delete one acocunt by id /api/accounts/id
 router.delete('/:id', deleteAccount);
+//show form to edit account by id /api/account/edit/id
+router.get('/edit/:id',editAccount);
 //update one account by id /api/account/id
 router.put('/:id',updateAccount);
 

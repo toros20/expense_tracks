@@ -1,0 +1,38 @@
+<div class = "container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card" >
+            
+                <div class="card-body">
+                    <div class="card-title">Edit Account</div>
+                    <form action="/api/accounts/{{account.id}}?_method=PUT" method="POST">
+                        <div class="form-group">
+                            <input value="{{account.name}}" type="text" class="form-control" name="name" placeholder="Name Account" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="details" rows="4" class="form-control" placeholder="Details">{{account.details}} </textarea>
+                        </div>
+                        <div class="form-group">
+                            <input value="{{account.balance}}" type="number" name="balance" min="0" class="form-control" placeholder="Balance">
+                        </div>
+                        <div class="form-group">
+                            <select name="type" class="form-control" aria-placeholder="type">
+                                <option value="{type{} ">{{account.type}}</option>
+                                <option value="cash">Cash Wallet</option>
+                                <option value="debit_card">Debit Card</option>
+                                <option value="credit_card">Credit Card</option>
+                                <option value="check_account">Check Account</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="user_id" value="1">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block">
+                                SAVE
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
