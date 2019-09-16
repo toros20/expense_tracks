@@ -28,6 +28,7 @@ app.set('view engine','.hbs');
 
 //midellwares
 app.use(morgan('dev'));
+app.use(express.urlencoded({extended: false}));
 app.use(json());
 
 //routes

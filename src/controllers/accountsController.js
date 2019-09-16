@@ -1,6 +1,12 @@
 import Account from '../models/Account';
 //Create CRUD to Accounts
 
+//function to list all the Account created
+export async function listAccount(req,res){
+    const accounts = await Account.findAll();
+    res.render('accounts/list',{accounts});
+}
+
 //function to show the form to create account (/api/accounts/create => GET)
 export async function addAccount(rea, res){
     res.render('accounts/create');
@@ -8,9 +14,7 @@ export async function addAccount(rea, res){
 
 //function to crate a new account (/api/accounst/ => POST)
 export async function createAccount(req, res) {
-    console.log('AQUIIIIIII');
-    console.log(req.body);
-    console.log('yAAAAAA');
+
     const { name, details, balance, type, user_id } = req.body;
     try {
         let newAccount = await Account.create({
