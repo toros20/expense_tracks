@@ -1,5 +1,11 @@
 import Account from '../models/Account';
 //Create CRUD to Accounts
+
+//function to show the form to create account (/api/accounts/create => GET)
+export async function addAccount(rea, res){
+    res.render('accounts/create');
+}
+
 //function to crate a new account (/api/accounst/ => POST)
 export async function createAccount(req, res) {
 

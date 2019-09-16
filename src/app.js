@@ -6,7 +6,7 @@ import path from 'path';
 //importing routes
 import startRoutes from './routes/start';
 import authRoutes from './routes/authentication';
-import accountsRoutes from './routes/acounts';
+import accountsRoutes from './routes/accounts';
 import categoriesRoutes from './routes/categories';
 
 //initializacion

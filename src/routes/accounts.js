@@ -1,10 +1,11 @@
 import {Router} from 'express';
 const router = Router();
 
-import { createAccount,getAccounts,showAccount,deleteAccount,updateAccount } 
+import { createAccount,getAccounts,showAccount,deleteAccount,updateAccount,addAccount } 
 from '../controllers/accountsController';
 
-
+//show form to create account /api/accounts/create
+router.get('/create',addAccount);
 //create new account  /api/accounts/
 router.post('/',createAccount);
 //show all accounts  /api/accounts/
