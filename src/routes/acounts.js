@@ -1,7 +1,8 @@
 import {Router} from 'express';
 const router = Router();
 
-import { createAccount,getAccounts,showAccount,deleteAccount,updateAccount } from '../controllers/accountsController';
+import { createAccount,getAccounts,showAccount,deleteAccount,updateAccount } 
+from '../controllers/accountsController';
 
 
 //create new account  /api/accounts/

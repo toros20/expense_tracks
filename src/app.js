@@ -5,6 +5,7 @@ import path from 'path';
 
 //importing routes
 import startRoutes from './routes/start';
+import authRoutes from './routes/authentication';
 import accountsRoutes from './routes/acounts';
 import categoriesRoutes from './routes/categories';
 
@@ -16,7 +17,7 @@ app.set('views', path.join(__dirname,'views'));
 app.engine('.hbs',exphbs({
     defaultLayout: 'main',
     layoutsDir: path.join(app.get('views'), 'layouts'),
-    partialDir: path.join(app.get('viewa'),'partials'),
+    partialDir: path.join(app.get('views'),'partials'),
     extname:'.hbs',
     helpers: require('./lib/handlerbars')
 }));
@@ -29,6 +30,7 @@ app.use(json());
 
 //routes
 app.use('/',startRoutes);
+app.use('/api/authentications',authRoutes);
 app.use('/api/accounts',accountsRoutes);
 app.use('/api/categories',categoriesRoutes);
 
