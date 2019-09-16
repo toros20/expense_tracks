@@ -13,7 +13,8 @@ import categoriesRoutes from './routes/categories';
 const app = express();
 //set the location of view folder
 app.set('views', path.join(__dirname,'views'));
-//set handlebars as template engine, 
+
+//config handlebars  
 app.engine('.hbs',exphbs({
     defaultLayout: 'main',
     layoutsDir: path.join(app.get('views'), 'layouts'),
@@ -22,6 +23,7 @@ app.engine('.hbs',exphbs({
     helpers: require('./lib/handlerbars')
 }));
 
+//set .hbs as views engine
 app.set('view engine','.hbs');
 
 //midellwares
@@ -34,5 +36,7 @@ app.use('/api/authentications',authRoutes);
 app.use('/api/accounts',accountsRoutes);
 app.use('/api/categories',categoriesRoutes);
 
+//set location to public folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 export default app;
