@@ -30,10 +30,11 @@ export async function createAccount(req, res) {
         );
 
         if (newAccount) {
-            return res.json({
+            res.redirect('/api/accounts/list');
+            /*return res.json({
                 messge: 'Account Create Successfully',
                 data: newAccount
-            });
+            });*/
         }
     } catch (error) {
         //console.log(error);
