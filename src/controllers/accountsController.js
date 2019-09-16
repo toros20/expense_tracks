@@ -71,6 +71,7 @@ export async function deleteAccount(req , res){
     });
 }
 
+//dunction to update one account by id (/api/accounts/:id => PUT)
 export async function updateAccount(req,res){
 
     const { id } = req.params;
