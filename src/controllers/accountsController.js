@@ -8,7 +8,9 @@ export async function addAccount(rea, res){
 
 //function to crate a new account (/api/accounst/ => POST)
 export async function createAccount(req, res) {
-
+    console.log('AQUIIIIIII');
+    console.log(req.body);
+    console.log('yAAAAAA');
     const { name, details, balance, type, user_id } = req.body;
     try {
         let newAccount = await Account.create({
@@ -30,7 +32,7 @@ export async function createAccount(req, res) {
             });
         }
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         res.status(500).json({
             message: 'Something goes wrong',
             data:{}
