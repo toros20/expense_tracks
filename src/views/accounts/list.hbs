@@ -22,9 +22,10 @@
                             </h3>
                         </a>
                         <p class="m-2"> {{details}} </p>
+                        <p>{{timeago createdAt}} </p>
                         <h3 class="card-title">{{balance}} </h3>
-                        <a href=" " class="btn btn-danger">Delete</a>
-                        <a href="" class="btn btn-warning">Edit</a>
+                        <a href="/api/accounts/{{id}}" class="btn btn-danger">Delete</a>
+                        <a href="/api/accounts/{{id}}" class="btn btn-warning">Edit</a>
                     </div>
                 </div>
             </div>
