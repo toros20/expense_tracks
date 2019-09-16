@@ -24,8 +24,12 @@
                         <p class="m-2"> {{details}} </p>
                         <p>{{timeago createdAt}} </p>
                         <h3 class="card-title">{{balance}} </h3>
-                        <a href="/api/accounts/{{id}}" class="btn btn-danger">Delete</a>
-                        <a href="/api/accounts/{{id}}" class="btn btn-warning">Edit</a>
+                        <form style="display: inline-block" action="/api/accounts/{{id}}?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                        <form style="display: inline-block" action="/api/accounts/{{id}}?_method=PUT">
+                        </form>
+                        <button type="submit" class="btn btn-warning">Edit</button>
                     </div>
                 </div>
             </div>

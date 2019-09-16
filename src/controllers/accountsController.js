@@ -72,16 +72,25 @@ export async function showAccount(req, res){
 //function to delete one account by id (/api/accounts/:id => DELETE)
 export async function deleteAccount(req , res){
     const { id } = req.params;
-    //return the number od deleted rows
-    const deleteRowCount = await Account.destroy({
-        where:{
-            id
+    try {
+         //return the number od deleted rows
+        const deleteRowCount = await Account.destroy({
+            where:{
+                id
+            }
+        });
+
+        if(deleteRowCount){
+            res.redirect('/api/accounts/list');
         }
-    });
-    res.json({
-        message: 'Account Delete Successfully',
-        count:deleteRowCount
-    });
+    } catch (error) {
+        res.json({
+            message: 'something Wrong in Delete action',
+            count:deleteRowCount
+        });
+    }
+   
+    
 }
 
 //dunction to update one account by id (/api/accounts/:id => PUT)

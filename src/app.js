@@ -2,6 +2,7 @@ import express, { json } from 'express';
 import morgan from 'morgan';
 import exphbs from 'express-handlebars';
 import path from 'path';
+import methodoverride from 'method-override';
 
 //importing routes
 import startRoutes from './routes/start';
@@ -30,6 +31,7 @@ app.set('view engine','.hbs');
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(json());
+app.use(methodoverride('_method'));//metodo para utilizar peticiones delete y put
 
 //routes
 app.use('/',startRoutes);
