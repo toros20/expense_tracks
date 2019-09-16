@@ -1,1 +1,37 @@
-formulario
+<div class = "container p-4">
+    <div class="row">
+        <div class="col-md-4">
+            <label for="">Create New Account</label>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/api/accounts/create" method="POST">
+                        <div class="form-group">
+                            <input required type="text" class="form-control" name="name" placeholder="Name Account" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="details" rows="4" class="form-control" placeholder="Details"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input required type="number" name="balance" min="0" class="form-control" placeholder="Balance">
+                        </div>
+                        <div class="form-group">
+                            <select required name="type" class="form-control" aria-placeholder="type">
+                                <option value="0">Select Account Type</option>
+                                <option value="cash">Cash Bullet</option>
+                                <option value="debit_card">Debit Card</option>
+                                <option value="credit_card">Credit Card</option>
+                                <option value="check_account">Check Account</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="user_id" value="1">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block">
+                                SAVE
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
