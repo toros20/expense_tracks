@@ -4,16 +4,20 @@ import exphbs from 'express-handlebars';
 import path from 'path';
 import methodoverride from 'method-override';
 import flash from 'connect-flash';
-import session from 'express-session';
-var seqsession = require ('connect-session-sequelize')(session.Store);
+import cookieParser from 'cookie-parser';
+
+var session = require('express-session');
+var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 //importing routes
 import startRoutes from './routes/start';
 import authRoutes from './routes/authentication';
 import accountsRoutes from './routes/accounts';
 import categoriesRoutes from './routes/categories';
-import { Sequelize } from 'sequelize/types';
+import { sequelize } from './database/database';
 
+
+//require ('./models/Session');
 //initializacion
 const app = express();
 //set the location of view folder
@@ -32,22 +36,30 @@ app.engine('.hbs',exphbs({
 app.set('view engine','.hbs');
 
 //midellwares
+//inicio de almacenar las cookies en la db
+app.use(cookieParser());
+var myStore = new SequelizeStore({
+    db:sequelize
+})
 app.use(session({
-    secret: 'expenseincometracks',
+    secret: 'expensetracks', 
+    store: myStore,
     resave: false,
     saveUninitialized:false,
-    store: new seqsession({
-        db:Sequelize
-    })
 }));
+myStore.sync();
+//fin de almacenar las cookies en db
+
+app.use(flash());
+
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(json());
 app.use(methodoverride('_method'));//metodo para utilizar peticiones delete y put
-app.use(flash());
+
 
 //Global Variables
-app.use((req, res, net) => {
+app.use((req, res, next) => {
     app.locals.success = req.flash('success');
     next();
 });

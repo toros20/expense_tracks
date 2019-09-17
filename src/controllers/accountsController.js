@@ -4,7 +4,7 @@ import Account from '../models/Account';
 //function to list all the Account created
 export async function listAccount(req,res){
     const accounts = await Account.findAll();
-    res.render('accounts/list',{accounts});
+    res.render('accounts/list',{accounts, messages:req.flash('success')});
 }
 
 //function to show the form to create account (/api/accounts/create => GET)
@@ -30,7 +30,7 @@ export async function createAccount(req, res) {
         );
 
         if (newAccount) {
-            res.flash('success','Account Created Successfully');
+            req.flash('success','Account Created Successfully');
             res.redirect('/api/accounts/list');
             /*return res.json({
                 messge: 'Account Create Successfully',
@@ -38,7 +38,7 @@ export async function createAccount(req, res) {
             });*/
         }
     } catch (error) {
-        //console.log(error);
+        console.log(error);
         res.status(500).json({
             message: 'Something goes wrong',
             data:{}
