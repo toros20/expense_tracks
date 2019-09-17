@@ -3,12 +3,16 @@ import morgan from 'morgan';
 import exphbs from 'express-handlebars';
 import path from 'path';
 import methodoverride from 'method-override';
+import flash from 'connect-flash';
+import session from 'express-session';
+var seqsession = require ('connect-session-sequelize')(session.Store);
 
 //importing routes
 import startRoutes from './routes/start';
 import authRoutes from './routes/authentication';
 import accountsRoutes from './routes/accounts';
 import categoriesRoutes from './routes/categories';
+import { Sequelize } from 'sequelize/types';
 
 //initializacion
 const app = express();
@@ -28,10 +32,26 @@ app.engine('.hbs',exphbs({
 app.set('view engine','.hbs');
 
 //midellwares
+app.use(session({
+    secret: 'expenseincometracks',
+    resave: false,
+    saveUninitialized:false,
+    store: new seqsession({
+        db:Sequelize
+    })
+}));
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(json());
 app.use(methodoverride('_method'));//metodo para utilizar peticiones delete y put
+app.use(flash());
+
+//Global Variables
+app.use((req, res, net) => {
+    app.locals.success = req.flash('success');
+    next();
+});
+
 
 //routes
 app.use('/',startRoutes);

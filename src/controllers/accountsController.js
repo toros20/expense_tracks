@@ -30,6 +30,7 @@ export async function createAccount(req, res) {
         );
 
         if (newAccount) {
+            res.flash('success','Account Created Successfully');
             res.redirect('/api/accounts/list');
             /*return res.json({
                 messge: 'Account Create Successfully',
@@ -93,7 +94,7 @@ export async function deleteAccount(req , res){
     
 }
 
-//dunction to update one account by id (/api/accounts/:id => PUT)
+//function to update one account by id (/api/accounts/:id => PUT)
 export async function updateAccount(req,res){
 
     const { id } = req.params;
@@ -126,6 +127,7 @@ export async function updateAccount(req,res){
     }
 }
 
+//function to show the form to update an account
 export async function editAccount(req,res){
     const { id } = req.params;
     try {
