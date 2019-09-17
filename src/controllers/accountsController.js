@@ -80,8 +80,9 @@ export async function deleteAccount(req , res){
                 id
             }
         });
-
-        if(deleteRowCount){
+     
+        if(deleteRowCount==1){
+            req.flash('danger','Account Deleted Successfully');
             res.redirect('/api/accounts/list');
         }
     } catch (error) {
@@ -114,6 +115,7 @@ export async function updateAccount(req,res){
         );
 
         if(result){
+             req.flash('update','Account Updated Successfully');
              res.redirect('/api/accounts/list');
         }
        

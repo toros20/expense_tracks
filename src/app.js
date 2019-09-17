@@ -17,7 +17,7 @@ import categoriesRoutes from './routes/categories';
 import { sequelize } from './database/database';
 
 
-//require ('./models/Session');
+require ('./models/Session');
 //initializacion
 const app = express();
 //set the location of view folder
@@ -61,6 +61,8 @@ app.use(methodoverride('_method'));//metodo para utilizar peticiones delete y pu
 //Global Variables
 app.use((req, res, next) => {
     app.locals.success = req.flash('success');
+    app.locals.danger = req.flash('danger');
+    app.locals.update = req.flash('update');
     next();
 });
 
