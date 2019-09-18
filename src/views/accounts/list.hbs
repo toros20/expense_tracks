@@ -1,4 +1,5 @@
 <div class="container  p-4">
+
     <div class="row m-2">
 
         <div class="col-md-3 p-2">
@@ -11,18 +12,27 @@
                 </a> 
             </div>
         </div>
+    </div>
+    <div class="row m-2">
 
         {{#each accounts}}
             <div class="col-md-3 p-2">
                 <div class="card text-center">
                     <div class="card-body">
-                        <a href="">
+                        <a href="#">
+                          
+                            {{#ifvalue type equals="Cash Wallet"}}<p><i class="far fa-money-bill-alt fa-3x m-2"></i></p>{{/ifvalue}}
+                            {{#ifvalue type equals="Debit Card"}}<p><i class="fas fa-money-check-alt fa-3x m-2"></i></p>{{/ifvalue}}
+                            {{#ifvalue type equals="Credit Card"}}<p><i class="far fa-credit-card fa-3x m-2"></i></p>{{/ifvalue}}
+                            {{#ifvalue type equals="Check Account"}}<p><i class="fas fa-money-check fa-3x m-2"></i></p>{{/ifvalue}}
+                            
                             <h3 class="card-title text-uppercase">
                                 {{name}}
                             </h3>
                         </a>
                         <p class="m-2"> {{details}} </p>
-                        <p>{{timeago createdAt}} </p>
+                    {{!--     <p>Last Update:</p>
+                        <p>{{timeago createdAt}} </p> --}}
                         <h3 class="card-title">{{balance}} </h3>
                         <form style="display: inline-block" action="/api/accounts/{{id}}?_method=DELETE" method="POST">
                             <button type="submit" class="btn btn-danger">Delete</button>
