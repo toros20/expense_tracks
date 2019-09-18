@@ -4,6 +4,32 @@ const LocalStrategy = require('passport-local').Strategy;
 import User from '../models/User';
 const helpers = require('./handlerbars'); // import the helpers
 
+//function to signIn 
+passport.use('local.signin', new LocalStrategy({
+    usernameField:'username',
+    passwordField: 'password',
+    passReqToCallback: true
+}, async (req,username, password, done ) => {
+    const user = await User.findOne({
+        where:{
+            username
+        }
+    })
+    
+    if(user){
+        const validPassword = await helpers.matchPassword(password,user.password);
+    
+        if (validPassword){
+            done(null,user, req.flash('success','Wellcome ' + user.fullname));
+        }else{
+            done(null,false,req.flash('danger','Incorrect Password'));
+        }
+    }else{
+        return done(null,false,req.flash('danger','The Username does not exists'));
+    }
+}));
+
+
 //function to register a new user 
 passport.use('local.signup',new LocalStrategy({
     usernameField:'username',
@@ -47,6 +73,7 @@ passport.deserializeUser(async (id, done) => {
             id
         }
     });
-    
+    console.log('aqiiii');
+    console.log(row);
     done(null,row);
 });

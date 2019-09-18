@@ -11,6 +11,11 @@ export async function homeAuth(req,res){
     res.render('auth/home');
 }
 
+//function to show SignIn form
+export async function signinAuth(req,res){
+    res.render('auth/signin');
+}
+
 //function to make the authentication of user
 /*export async function signupAuth(req,res){
   
