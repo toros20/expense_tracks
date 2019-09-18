@@ -5,6 +5,7 @@ import path from 'path';
 import methodoverride from 'method-override';
 import flash from 'connect-flash';
 import cookieParser from 'cookie-parser';
+import passport from 'passport';
 
 var session = require('express-session');
 var SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -16,8 +17,10 @@ import accountsRoutes from './routes/accounts';
 import categoriesRoutes from './routes/categories';
 import { sequelize } from './database/database';
 
-
+//import fom lib folder
 require ('./models/Session');
+require ('./lib/passport');
+
 //initializacion
 const app = express();
 //set the location of view folder
@@ -56,6 +59,9 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(json());
 app.use(methodoverride('_method'));//metodo para utilizar peticiones delete y put
+//passport module
+app.use(passport.initialize());//inicializamos el modulo passport
+app.use(passport.session());//save the new session
 
 
 //Global Variables

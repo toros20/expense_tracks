@@ -1,41 +1,32 @@
-//para modelar datos 
 import Sequelize from 'sequelize';
 
 //import connection object
 import { sequelize } from '../database/database';
 
-const Account = sequelize.define('accounts',{
+const User = sequelize.define('users',{
     id:{
         type: Sequelize.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
-    name:{
-        type: Sequelize.TEXT,
+    fullname:{
+        type: Sequelize.STRING
     },
-    details:{
-        type:Sequelize.TEXT
+    username:{
+        type: Sequelize.STRING
     },
-    balance:{
-        type:Sequelize.FLOAT
-    },
-    type:{
-        type:Sequelize.TEXT
-    },
-    user_id:{
-        type:Sequelize.INTEGER
+    password:{
+        type: Sequelize.STRING
     },
     createdAt:{
         type:Sequelize.DATE,
         defaultValue: Sequelize.NOW,
-        
     },
     updatedAt:{
         type:Sequelize.DATE,
         defaultValue: Sequelize.NOW,
-        
     }
+   
+}, {timestamps: true});
 
-},{timestamps:true });
-
-export default Account;
+export default User;
