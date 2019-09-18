@@ -69,7 +69,7 @@ app.use((req, res, next) => {
 
 //routes
 app.use('/',startRoutes);
-app.use('/api/authentications',authRoutes);
+app.use('/api/auth',authRoutes);
 app.use('/api/accounts',accountsRoutes);
 app.use('/api/categories',categoriesRoutes);
 
