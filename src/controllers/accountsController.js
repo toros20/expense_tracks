@@ -1,10 +1,14 @@
 import Account from '../models/Account';
-//Create CRUD to Accounts
+
+//module to verificated user is LogIn
+const { isLoggedIn } = require('../lib/auth');
 
 //function to list all the Account created
 export async function listAccount(req,res){
+
     const accounts = await Account.findAll();
     res.render('accounts/list',{accounts, messages:req.flash('success')});
+   
 }
 
 //function to show the form to create account (/api/accounts/create => GET)

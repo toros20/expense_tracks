@@ -4,21 +4,24 @@ const router = Router();
 import { createAccount,getAccounts,showAccount,deleteAccount,updateAccount,addAccount,listAccount,editAccount } 
 from '../controllers/accountsController';
 
+//module to verificated user is LogIn
+const { isLoggedIn } = require('../lib/auth');
+
 //list all the account /api/account/list
-router.get('/list',listAccount);
+router.get('/list',isLoggedIn,listAccount);
 //show form to create account /api/accounts/create
 router.get('/create',addAccount);
 //create new account  /api/accounts/
-router.post('/',createAccount);
+router.post('/',isLoggedIn,createAccount);
 //show all accounts  /api/accounts/
-router.get('/',getAccounts);
+router.get('/',isLoggedIn,getAccounts);
 //show one account by id  /api/accounts/id
-router.get('/:id',showAccount);
+router.get('/:id',isLoggedIn,showAccount);
 //delete one acocunt by id /api/accounts/id
-router.delete('/:id', deleteAccount);
+router.delete('/:id',isLoggedIn, deleteAccount);
 //show form to edit account by id /api/account/edit/id
-router.get('/edit/:id',editAccount);
+router.get('/edit/:id',isLoggedIn,editAccount);
 //update one account by id /api/account/id
-router.put('/:id',updateAccount);
+router.put('/:id',isLoggedIn,updateAccount);
 
 export default router;

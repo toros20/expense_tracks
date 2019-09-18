@@ -1,6 +1,9 @@
 import {Router} from 'express';
 import passport from 'passport';
 const router = Router();
+//module to verificated user is LogIn
+const { isLoggedIn } = require('../lib/auth');
+
 
 import {signup,signupAuth,homeAuth,signinAuth} from '../controllers/authController';
 
@@ -10,8 +13,8 @@ router.get('/signup',signup);
 //route to show sign In form
 router.get('/signin',signinAuth);
 
-//route when register/signup is ok
-router.get('/home',homeAuth);
+//route when register/signup is ok /api/auth/home
+router.get('/home',isLoggedIn,homeAuth);
 
 //route to sigun the register /api/auth/signup 
 //router.post('/signup',signupAuth);

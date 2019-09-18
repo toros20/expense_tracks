@@ -1,6 +1,7 @@
 //const passport = require ('passport');//import passport module
 import passport from 'passport';
 const passportHelper = require('../lib/passport');
+
 //function to show signup form
 export async function signup(req,res){
     res.render('auth/signup');
