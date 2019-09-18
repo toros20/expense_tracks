@@ -69,6 +69,7 @@ app.use((req, res, next) => {
     app.locals.success = req.flash('success');
     app.locals.danger = req.flash('danger');
     app.locals.update = req.flash('update');
+    app.locals.user = req.user; //usuario acutalemte logeado
     next();
 });
 

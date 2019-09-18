@@ -31,6 +31,10 @@ router.post('/signin',(req,res,next) => {
     })(req,res,next)
 });
 
-
+//route to doing logout
+router.get('/logout', (req,res) => {
+    req.logOut();
+    res.redirect('/api/auth/signin');
+});
 
 export default router;
