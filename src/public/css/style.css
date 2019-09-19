@@ -1,1 +1,23 @@
-@import "../css/fontawesome/css/all.css"
+@import "../css/fontawesome/css/all.css";
+
+body{
+    background-color:#f5f6f5;
+    overflow: hidden;
+}
+
+.index {
+    width: 100vw;
+    height:100vh;
+}
+
+.masthead {
+    color:#343a40;
+    min-height: 30rem;
+    width: 100%;
+    height:100%;
+    padding-top: 15px;
+    background: url('/img/background.jpeg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

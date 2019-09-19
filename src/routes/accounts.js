@@ -10,7 +10,7 @@ const { isLoggedIn } = require('../lib/auth');
 //list all the account /api/account/list
 router.get('/list',isLoggedIn,listAccount);
 //show form to create account /api/accounts/create
-router.get('/create',addAccount);
+router.get('/create',isLoggedIn,addAccount);
 //create new account  /api/accounts/
 router.post('/',isLoggedIn,createAccount);
 //show all accounts  /api/accounts/
