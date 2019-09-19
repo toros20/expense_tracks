@@ -20,16 +20,16 @@ router.get('/home',isLoggedIn,homeAuth);
 //router.post('/signup',signupAuth);
 
 router.post('/signup', passport.authenticate('local.signup',{
-    successRedirect: 'home',
-    failureRedirect: '/signup',
+    successRedirect: '/api/auth/home',
+    failureRedirect: '/api/auth/signup',
     failureFlash: true
 }));
 
 //route and function to make the signin by post
 router.post('/signin',(req,res,next) => {
     passport.authenticate('local.signin',{
-    successRedirect: 'home',
-    failureRedirect:'signin',
+    successRedirect: '/api/auth/home',
+    failureRedirect:'/api/auth/signin',
     failureFlash:true
     })(req,res,next)
 });

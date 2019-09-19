@@ -73,7 +73,7 @@ passport.deserializeUser(async (id, done) => {
             id
         }
     });
-    console.log('aqiiii');
-    console.log(row);
+   /*  console.log('aqiiii');
+    console.log(row); */
     done(null,row);
 });
