@@ -1,6 +1,7 @@
 import Income from '../models/Income';
 import Account from '../models/Account';
 import Sequelize from 'sequelize';
+import { deleteAccount } from './accountsController';
 
 //module to verificated if the user is login
 const {isLoggedIn} = require('../lib/auth');
@@ -17,7 +18,7 @@ export async function listIncome(req,res){
         ]
     });
 
-    res.render('incomes/list', {incomes,message: req.flash('success')});
+    res.render('incomes/list', {incomes,message: req.flash('success'),message: req.flash('danger')});
 }
 
 //function to show the form to create a new Incomes
@@ -62,4 +63,24 @@ export async function createIncome(req,res){
         });
     }
 
+}
+
+export async function deleteIncome(req,res){
+    const { id } = req.params;
+    try {
+        const deleteRowCont = await Income.destroy({
+            where:{
+                id
+            }
+        });
+        if(deleteRowCont==1){
+            req.flash('danger','Income Deleted Successfully');
+            res.redirect('/api/incomes/list');
+        }
+    } catch (error) {
+        res.json({
+            message:'Something Wrong in Delete Income',
+            count:deleteRowCont
+        });
+    }
 }

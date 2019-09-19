@@ -16,7 +16,7 @@ router.post('/',isLoggedIn,createIncome);
 //show one Income , api/incomes/id
 //router.get('/:id',isLoggedIn,showIncomes);
 //route to delete one income by id, api/incomes/id
-//router.delete('/:id',isLoggedIn,deleteIncome);
+router.delete('/:id',isLoggedIn,deleteIncome);
 //route to update one income by id
 //router.put('/:id',isLoggedIn,updateIncome);
 
