@@ -1,0 +1,21 @@
+<div class="container p-4">
+    <div class="row m-2">
+        <div class="col-md-4 ml-auto">
+            <a href="/api/incomes/create" class="btn btn-primary">+ Create New Income</a>
+        </div>
+    </div>
+</div>
+
+{{#each incomes}}
+
+{{else}}
+    <div class="row m-2">
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>There are not Incomes created yet</p>
+                <a href="/api/incomes/create">Create one</a>
+            </div>
+        </div>
+    </div>
+   
+{{/each}}

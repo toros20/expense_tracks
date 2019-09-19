@@ -10,9 +10,8 @@ export async function listAccount(req,res){
          where: {
             user_id : req.user.id
         }
-    }
-
-    );
+    });
+    
     res.render('accounts/list',{accounts, messages:req.flash('success')});
    
 }
