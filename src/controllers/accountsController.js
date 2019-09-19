@@ -11,7 +11,7 @@ export async function listAccount(req,res){
             user_id : req.user.id
         }
     });
-    
+
     res.render('accounts/list',{accounts, messages:req.flash('success')});
    
 }
@@ -20,6 +20,7 @@ export async function listAccount(req,res){
 export async function addAccount(rea, res){
     res.render('accounts/create');
 }
+
 
 //function to crate a new account (/api/accounst/ => POST)
 export async function createAccount(req, res) {
@@ -35,7 +36,7 @@ export async function createAccount(req, res) {
         },{
             fields:['name','details','balance','type','user_id']
             }
-        
+
         );
 
         if (newAccount) {

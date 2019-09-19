@@ -19,7 +19,7 @@ const Income = sequelize.define('incomes',{
     quantity:{
         type:Sequelize.FLOAT
     },
-    account_id:{
+    account:{
         type: Sequelize.INTEGER
     },
     user_id:{

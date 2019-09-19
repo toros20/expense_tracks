@@ -27,10 +27,36 @@ export async function addIncome(req,res){
              user_id : req.user.id
         }
      });
-
+     //console.log('MY ACCOUNT:'+myaccounts);
     res.render('incomes/create',{types});
 }
 
+//function to create a new income
 export async function createIncome(req,res){
-      
+      console.log(req.body);
+    const {name,details,quantity,account} = req.body;
+    try {
+        let newIncome = await Income.create({
+            name,
+            details,
+            quantity,
+            account,
+            user_id:req.user.id
+        },{
+            fields:['name','details','quantity','account','user_id']
+        });
+
+        if(newIncome){
+
+            req.flash('success','Income Created Successfully');
+            res.redirect('/api/incomes/list');
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: 'Somthing Wrong Creating New Income',
+            data:{}
+        });
+    }
+
 }
