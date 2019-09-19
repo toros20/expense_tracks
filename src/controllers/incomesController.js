@@ -11,7 +11,10 @@ export async function listIncome(req,res){
     const incomes = await Income.findAll({
         where:{
             user_id : req.user.id
-        }
+        },
+        order:[
+            ['id','DESC']
+        ]
     });
 
     res.render('incomes/list', {incomes,message: req.flash('success')});

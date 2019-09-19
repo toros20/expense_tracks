@@ -1,21 +1,72 @@
 <div class="container p-4">
     <div class="row m-2">
-        <div class="col-md-4 ml-auto">
-            <a href="/api/incomes/create" class="btn btn-primary">+ Create New Income</a>
+        <div class="col-md-6"><h3>List of my Incomes</h3></div>
+        <div class="col-md-6" style="text-align: right;">
+            <a href="/api/incomes/create" class="btn btn-success ">+ Create New Income</a>
         </div>
+    </div>
+</div>
+
+<div class="container p-2">
+    <div class="row m-2">
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Account</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each incomes}}
+                <tr>
+                    <th scope="row">{{@index}} </th>
+                    <td>{{name}} </td>
+                    <td>{{quantity}} </td>
+                    <td>{{account}} </td>
+                    <td>{{timeago createdAt}} </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_{{id}}">
+                            Details
+                        </button>
+                    </td>
+                    <td><a href="/api/incomes/id?_method = DELETE" class="btn btn-danger">Delete</a></td>
+                </tr>
+            
+            {{else}}
+                    <tr><td>There is not Incomes yet.</td>
+                    </tr>
+            {{/each}}
+            </tbody>
+        </table>
     </div>
 </div>
 
 {{#each incomes}}
 
-{{else}}
-    <div class="row m-2">
-        <div class="col-md-4 mx-auto">
-            <div class="card card-body text-center">
-                <p>There are not Incomes created yet</p>
-                <a href="/api/incomes/create">Create one</a>
-            </div>
-        </div>
+<div class="modal fade" id="modal_{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Details: {{details}}</p>
+        <p>Deposited in: {{account}}</p>
+        <p>Quantity Deposited: {{quantity}}</p>
+        <p>Time of Deposited: {{timeago createdAt}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
     </div>
-   
+  </div>
+</div>
 {{/each}}
