@@ -14,7 +14,7 @@ router.get('/list',isLoggedIn,listExpenses);
 router.get('/create',isLoggedIn,addExpense);
 
 //route to save the new expense /api/expenses/
-//router.post('/',isLoggedIn,createExpense);
+router.post('/',isLoggedIn,createExpense);
 
 //route  to show one especific expense
 //router.get('./:id',isLoggedIn,showExpense);

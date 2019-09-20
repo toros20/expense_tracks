@@ -33,7 +33,7 @@ export async function addIncome(req,res){
 
 //function to create a new income
 export async function createIncome(req,res){
-      console.log(req.body);
+    
     const {name,details,quantity,account} = req.body;
     try {
         let newIncome = await Income.create({

@@ -28,5 +28,34 @@ export async function addExpense(req,res){
     });
 
     const categories= await Category.findAll();
-    res.render('expenses/create'),{type,categories};
+    res.render('expenses/create',{types,categories});
+}
+
+//function to create a new Expense Track
+export async function createExpense(req,res){
+
+    const {name,details, account,quantity,category_id} = req.body;
+    try {
+        let newExpense = await Expense.create({
+            name,
+            details,
+            category_id,
+            account,
+            quantity,
+            user_id:req.user.id
+        },{
+            fields:['name','details','category_id','account','quantity','user_id']
+        });
+
+        if(newExpense){
+            req.flash('success','Expense Created Successfully');
+            res.redirect('/api/expenses/list');
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: 'Something Wrong Creating New Expense',
+            data:{}
+        });
+    }
 }

@@ -7,7 +7,7 @@
                     <form action="/api/expenses/" method="POST">
                      <div class="form-group">
                             <select name="category_id" class="form-control" aria-placeholder="type">
-                                 <option value="0">Select Account Origin</option>
+                                 <option value="0">Select Category</option>
                                 {{#each categories}}
                                     <option value="{{id}}">{{name}}</option>
                                 {{/each}}
@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-group">
                             <select name="account" class="form-control" aria-placeholder="type">
-                                 <option value="0">Select Account Origin</option>
+                                 <option value="0">Select Money Account</option>
                                 {{#each types}}
                                     <option value="{{type}}">{{type}}</option>
                                 {{/each}}
