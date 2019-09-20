@@ -1,7 +1,7 @@
 import Income from '../models/Income';
 import Account from '../models/Account';
 import Sequelize from 'sequelize';
-import { deleteAccount } from './accountsController';
+//import { deleteAccount } from './accountsController';
 
 //module to verificated if the user is login
 const {isLoggedIn} = require('../lib/auth');
