@@ -1,4 +1,5 @@
 import Sequelize from 'sequelize';
+import Category from './Category';
 
 //import object connection
 import { sequelize } from '../database/database';
@@ -37,5 +38,8 @@ const Expense = sequelize.define('expenses',{
     }
 
 }, {timestamps:true});
+
+Category.hasMany(Expense, {foreignKey: 'id'})
+Expense.belongsTo(Category, {foreignKey: 'category_id'})
 
 export default Expense;

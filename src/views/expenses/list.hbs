@@ -12,7 +12,7 @@
         <table class="table table-hover table-dark">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col"></th>
                     <th scope="col">Name</th>
                     <th scope="col">Category</th>
                     <th scope="col">Account</th>
@@ -26,9 +26,9 @@
             <tbody>
             {{#each expenses}}
                 <tr>
-                    <th scope="row"><i class="{{icon}} fa-3x"></i></th>
+                    <th scope="row"><i class="{{category.icon}} fa-1x"></i></th>
                     <td>{{name}}</td>
-                    <td>{{category}}</td>
+                    <td>{{category.name}}</td>
                     <td>{{account}}</td>
                     <td>{{quantity}}</td>
                     <td>{{timeago createdAt}}</td>

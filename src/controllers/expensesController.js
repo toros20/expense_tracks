@@ -9,7 +9,7 @@ export async function listExpenses(req,res){
     const expenses = await Expense.findAll({
         where:{
             user_id: req.user.id
-        },
+        }, include:[{ model:Category, required:true} ],
         order:[
             ['id','DESC']
         ]
