@@ -1,0 +1,79 @@
+<div class="container p-4">
+    <div class="row m-2">
+        <div class="col-md-6"><h3>List of my Expenses Track</h3></div>
+        <div class="col-md-6" style="text-align: right;">
+            <a href="/api/incomes/create" class="btn btn-success ">+ Create New Expense Tracks</a>
+        </div>
+    </div>
+</div>
+
+<div class="container p-2">
+    <div class="row m-2">
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Account</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Account</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each expenses}}
+                <tr>
+                    <th scope="row">{{@index}} </th>
+                    <td>{{name}}</td>
+                    <td>{{category}}</td>
+                    <td>{{account}}</td>
+                    <td>{{quantity}}</td>
+                    <td>{{timeago createdAt}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_{{id}}">
+                            Details
+                        </button>
+                    </td>
+                    <td>
+                        <form style="display: inline-block" action="/api/expenses/{{id}}?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            
+            {{else}}
+                    <tr><td>There is not Expenses Tracks yet.</td>
+                    </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{#each expenses}}
+<div class="modal fade" id="modal_{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Details: {{details}}</p>
+        <p>Category: {{category}} </p>
+        <p>Account: {{account}}</p>
+        <p>Quantity Expense: {{quantity}}</p>
+        <p>Time of Deposited: {{timeago createdAt}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
