@@ -1,4 +1,3 @@
-
 import Sequelize from 'sequelize';
 
 //import connection objet
@@ -8,7 +7,7 @@ const Income = sequelize.define('incomes',{
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        aotuIncrement: true,
+        autoIncrement: true,
     },
     name:{
         type: Sequelize.STRING
