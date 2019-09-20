@@ -16,11 +16,11 @@ router.get('/create',isLoggedIn,addExpense);
 //route to save the new expense /api/expenses/
 router.post('/',isLoggedIn,createExpense);
 
+//route to delete an especific expense
+router.delete('/:id',isLoggedIn,deleteExpense);
+
 //route  to show one especific expense
 //router.get('./:id',isLoggedIn,showExpense);
-
-//route to delete an especific expense
-//router.delete('./:id',isLoggedIn,deleteExpense);
 
 //route to update an especific expense
 //router.put('/:id',isLoggedIn,updateExpense);

@@ -2,6 +2,7 @@ import Expense from '../models/Expense';
 import Account from '../models/Account';
 import  Sequelize from "sequelize";
 import Category from '../models/Category';
+import { deleteAccount } from './accountsController';
 
 //function to list all the expenses Track
 export async function listExpenses(req,res){
@@ -56,6 +57,27 @@ export async function createExpense(req,res){
         res.status(500).json({
             message: 'Something Wrong Creating New Expense',
             data:{}
+        });
+    }
+}
+
+export async function deleteExpense(req,res){
+    const { id } = req.params;
+    try {
+        const deleteRowCount = await Expense.destroy({
+            where:{
+                id
+            }
+        });
+        if(deleteRowCount==1){
+            req.flash('danger','Expense Deleted Successfully');
+            res.redirect('/api/expenses/list');
+        }
+
+    } catch (error) {
+        res.json({
+            message:'something Wrong Deleting Expense',
+            count:deleteRowCount
         });
     }
 }

@@ -17,7 +17,6 @@
                     <th scope="col">Category</th>
                     <th scope="col">Account</th>
                     <th scope="col">Quantity</th>
-                    <th scope="col">Account</th>
                     <th scope="col">Date</th>
                     <th scope="col">Details</th>
                     <th scope="col">Delete</th>
@@ -65,7 +64,7 @@
       </div>
       <div class="modal-body">
         <p>Details: {{details}}</p>
-        <p>Category: {{category}} </p>
+        <p>Category: {{category.name}} </p>
         <p>Account: {{account}}</p>
         <p>Quantity Expense: {{quantity}}</p>
         <p>Time of Deposited: {{timeago createdAt}}</p>
