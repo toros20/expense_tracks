@@ -31,9 +31,11 @@ const Expense = sequelize.define('expenses',{
         type:Sequelize.DATE,
         dafaultValue: Sequelize.NOW
     },
-    updateAt:{
+    updatedAt:{
         type:Sequelize.DATE,
         defaultValue:Sequelize.NOW 
     }
 
-});
+}, {timestamps:true});
+
+export default Expense;

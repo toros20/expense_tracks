@@ -1,8 +1,5 @@
 import Account from '../models/Account';
 
-//module to verificated user is LogIn
-const { isLoggedIn } = require('../lib/auth');
-
 //function to list all the Account created
 export async function listAccount(req,res){
     //find the acconuts of this user 
