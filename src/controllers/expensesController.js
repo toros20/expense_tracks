@@ -49,6 +49,33 @@ export async function createExpense(req,res){
         });
 
         if(newExpense){
+
+            //get the actual balance os this user
+            const balance_A = await Account.findOne({
+                where:{
+                    user_id:req.user.id,
+                    type:account
+                },attributes: ['balance']
+            });
+            
+            try {
+                const result = await Account.update({
+                    balance: parseFloat(balance_A.balance) - parseFloat(quantity)
+                },
+                {
+                    where:{
+                        user_id:req.user.id,
+                        type:account
+                    }
+                });
+            } catch (error) {
+                console.log(error);
+                return res.json({
+                    message:'Something Wrong Update Account',
+                    data:{}
+                });
+            }
+
             req.flash('success','Expense Created Successfully');
             res.redirect('/api/expenses/list');
         }

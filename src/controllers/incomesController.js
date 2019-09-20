@@ -27,7 +27,8 @@ export async function addIncome(req,res){
              user_id : req.user.id
         }
      });
-     //console.log('MY ACCOUNT:'+myaccounts);
+
+    //console.log('MY ACCOUNT:'+myaccounts);
     res.render('incomes/create',{types});
 }
 
@@ -47,6 +48,33 @@ export async function createIncome(req,res){
         });
 
         if(newIncome){
+            
+            //get the acutal balance of the account of this user
+            const balance_A = await Account.findOne({
+                where:{
+                    user_id:req.user.id,
+                    type:account
+                },  attributes: ['balance'],
+            });
+          
+            //update the balance
+            try {
+                const result = await Account.update({
+                    balance: parseFloat(balance_A.balance) + parseFloat(quantity)
+                },
+                {
+                    where:{
+                        user_id:req.user.id,
+                        type:account
+                    }
+                });
+            } catch (error) {
+                console.log(error);
+                return res.json({
+                    message: 'Something Wrong in Update',
+                    data:{}
+                });
+            }
 
             req.flash('success','Income Created Successfully');
             res.redirect('/api/incomes/list');
