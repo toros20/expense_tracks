@@ -15,7 +15,8 @@ import startRoutes from './routes/start';
 import authRoutes from './routes/authentication';
 import accountsRoutes from './routes/accounts';
 import categoriesRoutes from './routes/categories';
-import incomesRoutes from './routes/incomes'
+import incomesRoutes from './routes/incomes';
+import expensesRoutes from './routes/expenses';
 import { sequelize } from './database/database';
 
 //import fom lib folder
@@ -80,7 +81,8 @@ app.use('/',startRoutes);
 app.use('/api/auth',authRoutes);
 app.use('/api/accounts',accountsRoutes);
 app.use('/api/incomes',incomesRoutes);
-app.use('/api/categories',categoriesRoutes);
+app.use('/api/expenses',expensesRoutes);
+//app.use('/api/categories',categoriesRoutes);
 
 //set location to public folder
 app.use(express.static(path.join(__dirname, 'public')));
