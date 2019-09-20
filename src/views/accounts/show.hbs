@@ -1,0 +1,191 @@
+<div class="container p-4">
+
+        <div class="row m-2">
+             <div class="col-md-3 p-2" style="text-align: right;">
+            <div class="card text-center">
+                <a href="/api/accounts/list">
+                    <p><i class="fas fa-hand-point-left fa-3x m-2"></i></p>
+                    <div class="card-body">
+                    <h3 class="card-title">ACCOUNTS</h3>
+                    </div>
+                </a> 
+            </div>
+        </div>
+           <div class="col-md-3 p-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                      
+                        {{#ifvalue account_A.type equals="Cash Wallet"}}<p><i class="far fa-money-bill-alt fa-3x m-2"></i></p>{{/ifvalue}}
+                        {{#ifvalue account_A.type equals="Debit Card"}}<p><i class="fas fa-money-check-alt fa-3x m-2"></i></p>{{/ifvalue}}
+                        {{#ifvalue account_A.type equals="Credit Card"}}<p><i class="far fa-credit-card fa-3x m-2"></i></p>{{/ifvalue}}
+                        {{#ifvalue account_A.type equals="Check Account"}}<p><i class="fas fa-money-check fa-3x m-2"></i></p>{{/ifvalue}}
+                        
+                        <h3 class="card-title text-uppercase">
+                            {{account_A.name}}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 p-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <p class="m-2">Details </p>
+                        <p> {{account_A.details}} </p>
+                        <p>Last Update:{{timeago account_A.updatedAt}} 
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 p-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                       <p>Actal Balance</p> 
+                        <h3 class="card-title">{{account_A.balance}} LPS</h3>
+                       
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+
+        <div class="row m-2">
+            <h3>Expenses Tracks</h3>
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Account</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#each expenses}}
+                    <tr>
+                        <th scope="row"><i class="{{category.icon}} fa-1x"></i></th>
+                        <td>{{name}}</td>
+                        <td>{{category.name}}</td>
+                        <td>{{account}}</td>
+                        <td>{{quantity}}</td>
+                        <td>{{timeago createdAt}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_{{id}}">
+                                Details
+                            </button>
+                        </td>
+                        <td>
+                            <form style="display: inline-block" action="/api/expenses/{{id}}?_method=DELETE" method="POST">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                
+                {{else}}
+                        <tr><td>There is not Expenses Tracks yet.</td>
+                        </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    
+        <div class="row m-2">
+            <h3>Incomes Tracks</h3>
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Account</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#each incomes}}
+                    <tr>
+                        <th scope="row">{{@index}} </th>
+                        <td>{{name}} </td>
+                        <td>{{quantity}} </td>
+                        <td>{{account}} </td>
+                        <td>{{timeago createdAt}} </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_{{id}}">
+                                Details
+                            </button>
+                        </td>
+                        <td>
+                            <form style="display: inline-block" action="/api/incomes/{{id}}?_method=DELETE" method="POST">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                
+                {{else}}
+                        <tr><td>There is not Incomes yet.</td>
+                        </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    
+
+     {{!-- creating modals div --}}
+    {{#each expenses}}
+    <div class="modal fade" id="modal_{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{name}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Details: {{details}}</p>
+            <p>Category: {{category.name}} </p>
+            <p>Account: {{account}}</p>
+            <p>Quantity Expense: {{quantity}}</p>
+            <p>Time of Deposited: {{timeago createdAt}}</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    {{/each}}
+    {{!-- END of creating modals div --}}
+
+    {{!-- creating modals income --}}
+    {{#each incomes}}
+    <div class="modal fade" id="modal_{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{name}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Details: {{details}}</p>
+            <p>Deposited in: {{account}}</p>
+            <p>Quantity Deposited: {{quantity}}</p>
+            <p>Time of Deposited: {{timeago createdAt}}</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    {{/each}}
+    {{!-- END of creating modals div --}}
+    
+</div>

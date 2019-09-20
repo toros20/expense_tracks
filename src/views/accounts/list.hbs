@@ -6,7 +6,7 @@
             <h4>To Deposit your Incomes </h4>
             <h4>To Manage Expense</h4>
         </div>
-         <div class="col-md- p-2" style="text-align: right;">
+         <div class="col-md-3 p-2" style="text-align: right;">
             <div class="card text-center">
                 <a href="/api/accounts/create">
                     <p><i class="fas fa-edit fa-5x m-2"></i></p>
@@ -33,7 +33,7 @@
             <div class="col-md-3 p-2">
                 <div class="card text-center">
                     <div class="card-body">
-                        <a href="#">
+                        <a href="/api/accounts/show/{{id}}">
                           
                             {{#ifvalue type equals="Cash Wallet"}}<p><i class="far fa-money-bill-alt fa-3x m-2"></i></p>{{/ifvalue}}
                             {{#ifvalue type equals="Debit Card"}}<p><i class="fas fa-money-check-alt fa-3x m-2"></i></p>{{/ifvalue}}

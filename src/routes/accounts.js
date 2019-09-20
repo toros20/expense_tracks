@@ -14,7 +14,7 @@ router.get('/create',isLoggedIn,addAccount);
 //create new account  /api/accounts/
 router.post('/',isLoggedIn,createAccount);
 //show all accounts  /api/accounts/
-router.get('/',isLoggedIn,getAccounts);
+router.get('/show/:id',isLoggedIn,showAccount);
 //show one account by id  /api/accounts/id
 router.get('/:id',isLoggedIn,showAccount);
 //delete one acocunt by id /api/accounts/id

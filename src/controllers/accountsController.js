@@ -1,4 +1,7 @@
 import Account from '../models/Account';
+import Income from '../models/Income';
+import Category from '../models/Category';
+import Expense from '../models/Expense';
 
 //function to list all the Account created
 export async function listAccount(req,res){
@@ -66,15 +69,33 @@ export async function getAccounts(req, res){
 
 //function to show one account by id  (/api/accounts/:id =>GET)
 export async function showAccount(req, res){
+
     const { id } = req.params;
-    const account = await Account.findOne({
+    //get this account
+    const account_A = await Account.findOne({
         where:{
             id
         }
     });
-    res.json({
-        data:account
+    //get the incomes of this user on this account
+    const incomes = await Income.findAll({
+        where:{
+            account:account_A.type,
+            user_id: account_A.user_id
+
+        }
     });
+    //get the expense made for this user in this account
+    const expenses = await Expense.findAll({
+        where:{
+            account:account_A.type,
+            user_id: account_A.user_id
+        }, include:[{ model:Category, required:true} ],
+        order:[
+            ['id','DESC']
+        ]
+    });
+    res.render('accounts/show',{account_A,incomes,expenses});
 }
 
 //function to delete one account by id (/api/accounts/:id => DELETE)
