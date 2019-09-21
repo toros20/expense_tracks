@@ -22,6 +22,8 @@ const Record = sequelize.define('records',{
     },
     details:{
         type: Sequelize.TEXT
+    },quantity:{
+        type:Sequelize.FLOAT
     },
     type_record:{
         type: Sequelize.STRING

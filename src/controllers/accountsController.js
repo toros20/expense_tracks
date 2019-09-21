@@ -82,8 +82,9 @@ export async function showAccount(req, res){
         where:{
             account:account_A.type,
             user_id: account_A.user_id
-
-        }
+        },order:[
+            ['id','DESC']
+        ]
     });
     //get the expense made for this user in this account
     const expenses = await Expense.findAll({

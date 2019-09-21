@@ -1,6 +1,7 @@
 import Income from '../models/Income';
 import Account from '../models/Account';
 import Sequelize from 'sequelize';
+import Record from '../models/Records';
 
 //function to list all the Incomes by user_id
 export async function listIncome(req,res){
@@ -48,8 +49,28 @@ export async function createIncome(req,res){
         });
 
         if(newIncome){
+            try{
+                 //save the income in records table
+                let newRecord = await Record.create({
+                    user_id:req.user.id,
+                    account,
+                    name,
+                    details,
+                    quantity,
+                    type_record: 'Income'
+                },{
+                    fields:['name','details','quantity','account','user_id','type_record']
+                })
+            }catch (e){
+                console.log(e);
+                return res.json({
+                    message: 'Something Wrong inserting record',
+                    data:{}
+                });
+            }
+           
             
-            //get the acutal balance of the account of this user
+            //get the actual balance of the account of this user
             const balance_A = await Account.findOne({
                 where:{
                     user_id:req.user.id,

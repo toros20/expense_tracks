@@ -2,7 +2,7 @@ import Expense from '../models/Expense';
 import Account from '../models/Account';
 import  Sequelize from "sequelize";
 import Category from '../models/Category';
-import { deleteAccount } from './accountsController';
+import Record from '../models/Records';
 
 //function to list all the expenses Track
 export async function listExpenses(req,res){
@@ -49,6 +49,26 @@ export async function createExpense(req,res){
         });
 
         if(newExpense){
+
+            try{
+                //save the income in records table
+               let newRecord = await Record.create({
+                   user_id:req.user.id,
+                   account,
+                   name,
+                   details,
+                   quantity,
+                   type_record: 'Expense'
+               },{
+                   fields:['name','details','quantity','account','user_id','type_record']
+               })
+           }catch (e){
+               console.log(e);
+               return res.json({
+                   message: 'Something Wrong inserting record',
+                   data:{}
+               });
+           }
 
             //get the actual balance os this user
             const balance_A = await Account.findOne({

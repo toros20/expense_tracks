@@ -1,0 +1,87 @@
+<div class="container p-4">
+
+        <div class="row m-2">
+             <div class="col-md-3 p-2" style="text-align: right;">
+            <div class="card text-center">
+                <a href="/api/accounts/list">
+                    <p><i class="fas fa-hand-point-left fa-3x m-2"></i></p>
+                    <div class="card-body">
+                    <h3 class="card-title">ACCOUNTS</h3>
+                    </div>
+                </a> 
+            </div>
+        </div>
+          
+          
+        </div>
+
+        <div class="row m-2">
+            <h3>Records of Incomes and Expenses</h3>
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Account</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Record</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#each records}}
+
+                     {{#ifvalue type_record equals="Income"}}<tr style="background-color: #268e3e">{{/ifvalue}}
+                     {{#ifvalue type_record equals="Expense"}}<tr style="background-color: hsl(357, 58%, 35%)">{{/ifvalue}}
+
+                        <th scope="row"></th>
+                        <td>{{account}}</td>
+                        <td>{{name}}</td>
+                        <td>{{quantity}}</td>
+                        <td>{{type_record}}</td>
+                        <td>{{timeago createdAt}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_{{id}}">
+                                Details
+                            </button>
+                        </td>
+                    </tr>
+                
+                {{else}}
+                        <tr><td>There is not any Tracks yet.</td>
+                        </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>    
+
+     {{!-- creating modals div --}}
+    {{#each records}}
+    <div class="modal fade" id="modal_{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{name}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Details: {{details}}</p>
+            <p>Type of Record: {{type_record}} </p>
+            <p>Account: {{account}}</p>
+            <p>Quantity Expense: {{quantity}}</p>
+            <p>Time of Deposited: {{timeago createdAt}}</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    {{/each}}
+    {{!-- END of creating modals div --}}
+
+    
+</div>
