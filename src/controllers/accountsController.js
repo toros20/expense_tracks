@@ -135,7 +135,7 @@ export async function updateAccount(req,res){
             details,
             balance,
             type,
-            user_id,
+            user_id:req.user.id
         },
         {
             where:{id}
