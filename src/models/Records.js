@@ -14,8 +14,8 @@ const Record = sequelize.define('records',{
     user_id:{
         type:Sequelize.INTEGER
     },
-    account_id:{
-        type: Sequelize.INTEGER
+    account:{
+        type: Sequelize.STRING
     },
     name:{
         type:Sequelize.STRING
@@ -37,7 +37,4 @@ const Record = sequelize.define('records',{
 
 }, {timestamps:true});
 
-Account.hasMany(Record, {foreignKey: 'id'})
-Record.belongsTo(Account, {foreignKey: 'account_id'})
-
-export default Expense;
+export default Record;
