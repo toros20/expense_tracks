@@ -10,5 +10,16 @@ module.exports = {
           
             return res.redirect('/api/auth/signin');
         }
-    }
+    },
+    isNotLoggedIn(req, res, next){
+        
+            if (! req.isAuthenticated()){ // if the user if authenticate
+            
+                return next();
+            }else{
+            
+                return res.redirect('/api/auth/home');
+            }
+        }
+
 };
